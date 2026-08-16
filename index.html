@@ -1,0 +1,185 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3DS QR Generator - Descargas Directas</title>
+
+  <!-- Carga de la librería QRCode.js desde CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-color: #f8fafc;
+      --accent-color: #06b6d4;
+      --accent-hover: #0891b2;
+      --border-color: #334155;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: var(--accent-color);
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input[type="url"] {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background-color: #0f172a;
+      color: #fff;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="url"]:focus {
+      border-color: var(--accent-color);
+    }
+
+    button {
+      background-color: var(--accent-color);
+      color: #0f172a;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--accent-hover);
+    }
+
+    .qr-box {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      background-color: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    /* El contenedor donde se dibuja el QR */
+    #qrcode img, #qrcode canvas {
+      margin: 0 auto;
+      display: block;
+    }
+
+    .info-tag {
+      margin-top: 15px;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      background-color: #334155;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Generador QR para 3DS</h1>
+    <p>Pega un enlace de descarga directa (ej. <code>.cia</code> o <code>.nds</code>) para escanearlo con la app FBI en tu Nintendo 3DS.</p>
+
+    <div class="input-group">
+      <input type="url" id="urlInput" placeholder="https://ejemplo.com/juego.cia" required>
+      <button onclick="generateQR()">Generar Código QR</button>
+    </div>
+
+    <div class="qr-box">
+      <div id="qrcode"></div>
+    </div>
+
+    <div class="info-tag">
+      ⚠️ Recuerda: El enlace debe ser <strong>directo</strong> al archivo (sin acortadores ni páginas intermedias).
+    </div>
+  </div>
+
+  <script>
+    // Inicializar el objeto QRCode en el div #qrcode
+    let qrcode = new QRCode(document.getElementById("qrcode"), {
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M // Nivel de corrección de errores medio
+    });
+
+    function generateQR() {
+      const url = document.getElementById("urlInput").value.trim();
+
+      if (!url) {
+        alert("Por favor, ingresa una URL válida.");
+        return;
+      }
+
+      // Limpia el QR anterior y genera el nuevo
+      qrcode.clear();
+      qrcode.makeCode(url);
+    }
+
+    // Generar un QR por defecto al cargar la página
+    window.onload = function() {
+      document.getElementById("urlInput").value = "https://example.com/demo.cia";
+      generateQR();
+    };
+  </script>
+
+</body>
+</html></pre>
+        </body>
+    </html>
